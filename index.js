@@ -13,7 +13,10 @@ import session from "express-session";
 import CoursesRoutes from "./Kambaz/Courses/routes.js";
 import ModulesRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
-import EnrollmentsRoutes from "./Kambaz/Enrollments/routes.js";
+import mongoose from "mongoose";
+
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://localhost:27017/kambaz";
+mongoose.connect(CONNECTION_STRING);
 
 const app = express();
 app.use(
@@ -45,9 +48,8 @@ PathParameters(app);
 QueryParameters(app);
 WorkingWithObjects(app);
 WorkingWithArrays(app);
-UserRoutes(app, db);
-CoursesRoutes(app, db);
-ModulesRoutes(app, db);
-AssignmentRoutes(app, db);
-EnrollmentsRoutes(app, db);
+UserRoutes(app);
+CoursesRoutes(app);
+ModulesRoutes(app);
+AssignmentRoutes(app);
 app.listen(process.env.PORT || 4000);
