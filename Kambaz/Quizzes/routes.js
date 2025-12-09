@@ -40,6 +40,7 @@ export default function QuizzesRoutes(app) {
   };
   const deleteQuiz = async (req, res) => {
     const { quizId } = req.params;
+    await resultsDao.deleteAllQuizResultsForQuiz(quizId);
     const status = await dao.deleteQuiz(quizId);
     res.send(status);
   };

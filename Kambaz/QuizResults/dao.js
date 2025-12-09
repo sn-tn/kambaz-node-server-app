@@ -10,10 +10,14 @@ export default function QuizResultsDao() {
   const createAttempt = async (attempt) => {
     return await model.create(attempt);
   }
+  const deleteAllQuizResultsForQuiz = async (quizId) => {
+    return await model.deleteMany({quiz: quizId});
+  }
   return {
     findQuizResults,
     findNumberAttempts,
     createAttempt,
+    deleteAllQuizResultsForQuiz,
   };
 
 }
