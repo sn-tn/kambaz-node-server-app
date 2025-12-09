@@ -73,5 +73,5 @@ export default function QuizzesRoutes(app) {
   app.post("/api/courses/:courseId/quizzes", createQuiz);
   app.delete("/api/courses/:courseId/quizzes/:quizId", deleteQuiz);
   app.get("/api/courses/:courseId/quizzes/:quizId/:userId/count", findNumberAttempts);
-  app.post("/api/courses/:courseId/quizzes/:quizId/:userId", createAttempt);
+  app.post("/api/courses/:courseId/quizzes/:quizId/users/:userId", createAttempt);
 }
