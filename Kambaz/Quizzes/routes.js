@@ -57,12 +57,14 @@ export default function QuizzesRoutes(app) {
   };
   const createAttempt = async (req, res) => {
     const { quizId, userId } = req.params;
-    const { score } = req.body;
+    const { score, answers } = req.body;
     const newAttempt = {
       _id: uuidv4(),
       quiz: quizId,
       user: userId,
-      score: score
+      score: score,
+      answers: answers,
+      time: new Date(),
     };
     const attempt = resultsDao.createAttempt(newAttempt);
     res.json(attempt);
@@ -73,6 +75,6 @@ export default function QuizzesRoutes(app) {
   app.put("/api/courses/:courseId/quizzes/:quizId", updateQuiz);
   app.post("/api/courses/:courseId/quizzes", createQuiz);
   app.delete("/api/courses/:courseId/quizzes/:quizId", deleteQuiz);
-  app.get("/api/courses/:courseId/quizzes/:quizId/:userId/count", findNumberAttempts);
+  app.get("/api/courses/:courseId/quizzes/:quizId/users/:userId/count", findNumberAttempts);
   app.post("/api/courses/:courseId/quizzes/:quizId/users/:userId", createAttempt);
 }

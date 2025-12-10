@@ -7,7 +7,7 @@ export default function QuizResultsDao() {
   const findNumberAttempts = async (quizId, userId) => {
     return await model.countDocuments({quiz: quizId, user: userId});
   }
-  const createAttempt = async (attempt) => {
+  const createAttempt = async (attempt) => { 
     return await model.create(attempt);
   }
   const deleteAllQuizResultsForQuiz = async (quizId) => {
